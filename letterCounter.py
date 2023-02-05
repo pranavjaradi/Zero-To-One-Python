@@ -5,3 +5,7 @@ print("Welcome to the Letter counter App")
 #Get user name
 nameOfUser = input("\nWhat is your name: ").title().strip()
 print("Hello and welcome " + nameOfUser + "!")
+
+print("I will count the frequency of specific letter in a message.")
+
+
