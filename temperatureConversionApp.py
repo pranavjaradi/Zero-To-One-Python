@@ -10,7 +10,7 @@ tempInF = float(input("\nWhat is your temperature in Fahrenheit: "))
 
 #Converting temperature in F and then converting it into C and K and rounding off till 4 decimal places.
 tempInC = round((tempInF - 32) * (5/9), 4)
-tempInK = round(tempInC+273.15,4)
+tempInK = round(tempInC + 273.15, 4)
 
 
 print("Degrees Farheneit:\t" + str(tempInF))
