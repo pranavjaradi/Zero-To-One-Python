@@ -12,7 +12,7 @@ tempInF = float(input("\nWhat is your temperature in Fahrenheit: "))
 tempInC = round((tempInF - 32) * (5/9), 4)
 tempInK = round(tempInC + 273.15, 4)
 
-
+#Printing summary table
 print("Degrees Farheneit:\t" + str(tempInF))
 print("Degrees Celsius:\t" + str(tempInC))
 print("Degrees Kelvin:\t\t" +  str(tempInK))
