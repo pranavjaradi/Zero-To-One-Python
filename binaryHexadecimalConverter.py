@@ -20,8 +20,8 @@ binaryList = []
 hexaList = []
 
 for num in decimalList:
-    binaryList.append(bin(num))
-    hexaList.append(hex(num))
+    binaryList.append(bin(num).replace("0b", ""))
+    hexaList.append(hex(num).replace("0x", ""))
 
 print("Generating lists..... complete!")
 
