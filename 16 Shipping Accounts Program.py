@@ -10,3 +10,20 @@ shipment.
 
 print("Welcome to the Shipping Accounts Program.")
 
+#Creating user lists and logging in user
+users = ["Jack", "Steve", "Mike", "Kim", "Chris"]
+
+user = input("\nHello, What is your username: ").title()
+
+#Welcoming user and displaying current shipping prices
+if user in users:
+    print("\nHello {}, Welcome to your account.".format(user))
+else:
+    print("Sorry, you do not have an account with us. Goodbye.")
+
+#Welcoming user and displaying current shipping prices
+print("Shipping orders 0 to 100: \t\t$5.10 each")
+print("Shipping orders 100 to 500: \t\t$5.00 each")
+print("Shipping orders 500 to 1000: \t\t$4.95 each")
+print("Shipping orders over 1000: \t\t$4.80 each")
+
