@@ -48,3 +48,9 @@ print("\nResult of flipping a coin {} times:".format(count))
 print("Side\tCount\t\tPercentage")
 print("HEADS\t\t{}\t\t{}%".format(heads, heads_percentage))
 print("TAILS\t\t{}\t\t{}%".format(tails, tails_percentage))
+
+"""
+Learnings:
+1. randomint method from random module
+2. nested if
+"""
