@@ -23,3 +23,16 @@ else:
     print("Here is a list of political parties to join.")
     for party in parties:
         print(party)
+    
+    #Taking user desired party to join
+    vote = input("\nWhat party would you like to join: ").title().strip()
+    if vote in parties:
+        print("\nCongratulations {}! You have joined the {} party!".format(name, vote))
+        if vote in ["Republican", "Democratic"]:
+            print("That is a major party!")
+        elif vote in ["Libertarian", "Green"]:
+            print("That is not a major party!")
+        else:
+            print("You are an Independent person!")
+    else:
+        print("That is not a given party.")
