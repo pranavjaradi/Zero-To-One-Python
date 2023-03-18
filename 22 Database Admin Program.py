@@ -9,3 +9,18 @@ who logged in is the admin, a list of all usernames and passwords will be displa
 """
 
 print("Welcome to Database Admin Program.")
+
+#Creating dictionary in username:password format.
+log_on_information = {
+    'admin00' : 'admin1234',
+    'mooman74':'alskes145',
+    'meramo1986':'kehns010101',
+    'nickyD':'world1star',
+    'george2':'booo3oha'
+    }
+
+#Taking user input for logging in
+name = print("\nEnter your username: ")
+
+if name in log_on_information.keys():
+    password = input("Enter your password: ")
