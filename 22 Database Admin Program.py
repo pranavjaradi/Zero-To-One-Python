@@ -20,7 +20,37 @@ log_on_information = {
     }
 
 #Taking user input for logging in
-name = print("\nEnter your username: ")
+name = input("\nEnter your username: ")
 
+#getting user password.
 if name in log_on_information.keys():
     password = input("Enter your password: ")
+    if password == log_on_information[name]:
+        #Logging in user if password matches database.
+        print("\nHello " + "! You are logged in!")
+        if name == 'admin00':
+            #showing whole database to admin account.
+            print("\nHere is the current user database:")
+            for key, value in log_on_information.items():
+                print("Username: " + key + "\t\tPassword: " + value)
+        else:
+            #Simulating change password for non admin users
+            password_change_choice = input("Would you like to change your password: ").lower().strip()
+            if password_change_choice == 'yes':
+                new_password = input("What would you like to your new password to be (minimum 8 characters): ")
+                if len(new_password) >= 8:
+                    #changing password if it is 8 or more characters long
+                    log_on_information[name] = new_password
+                else:
+                    print("Password should be of minimum 8 characters")
+                print("\n" + name + " your password is " + log_on_information[name])
+            else:
+                print("\nThank you, goodbye.")
+
+    #User did not entered correct password.
+    else:
+        print("Incorrect password!")
+
+#User is not in database
+else:
+    print("Username not in database. Goodbye.")
