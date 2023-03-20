@@ -35,7 +35,7 @@ for key, value in sorted(letter_count.items()):
 #printing letters in highest to lowest order
 for element in letter_count.most_common():
     print(element[0],end='')
-    
+
 
 #taking strinng from user for second string
 key_phrase_2 = input("\nEnter a word or phrase to count the occurrence of each letter: ").lower().strip()
@@ -46,14 +46,14 @@ for letter in key_phrase_2:
         key_phrase_2 = key_phrase_2.replace(letter, '')
 
 #Counting occurence of each letter and total letters
-letter_count = Counter(key_phrase_2)
-total_letters = len(key_phrase_2)
+letter_count_2 = Counter(key_phrase_2)
+total_letters_2 = len(key_phrase_2)
 
 #Printing frequency of each letter
 print("Letter\tOccurence\tPercentage")
-for key, value in sorted(letter_count.items()):
-    print(key + "\t" + str(value) + "\t\t" + str(round(value*100/total_letters, 2)) + "%")
+for key, value in sorted(letter_count_2.items()):
+    print(key + "\t" + str(value) + "\t\t" + str(round(value*100/total_letters_2, 2)) + "%")
 
 #printing letters in highest to lowest order
-for element in letter_count.most_common():
+for element in letter_count_2.most_common():
     print(element[0],end='')
