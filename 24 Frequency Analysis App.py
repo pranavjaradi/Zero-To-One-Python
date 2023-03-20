@@ -57,6 +57,3 @@ for key, value in sorted(letter_count.items()):
 #printing letters in highest to lowest order
 for element in letter_count.most_common():
     print(element[0],end='')
-    
-#Hello! How are you doing today? 32 years old I'm today.
-#: This is prety interesting. I feel like i'm learning something new!
