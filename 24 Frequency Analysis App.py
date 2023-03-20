@@ -38,16 +38,16 @@ for element in letter_count.most_common():
     
 
 #taking strinng from user for second string
-key_phrase_1 = input("\nEnter a word or phrase to count the occurrence of each letter: ").lower().strip()
+key_phrase_2 = input("\nEnter a word or phrase to count the occurrence of each letter: ").lower().strip()
 
 #removing all non-alphabets
-for letter in key_phrase_1:
+for letter in key_phrase_2:
     if letter not in letters:
-        key_phrase_1 = key_phrase_1.replace(letter, '')
+        key_phrase_2 = key_phrase_2.replace(letter, '')
 
 #Counting occurence of each letter and total letters
-letter_count = Counter(key_phrase_1)
-total_letters = len(key_phrase_1)
+letter_count = Counter(key_phrase_2)
+total_letters = len(key_phrase_2)
 
 #Printing frequency of each letter
 print("Letter\tOccurence\tPercentage")
