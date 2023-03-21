@@ -10,7 +10,7 @@ print("Welcome to Factor Generator App!")
 #flag for keeping while loop run
 flag = True
 
-while flag == True:
+while flag:
 
     #Getting user input to take a number for calculating factors
     number = int(input("\nEnter a number to determine all factors of that number: "))
