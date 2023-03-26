@@ -53,8 +53,8 @@ history = []
 is_running = True
 while is_running:
     #Taking user input.
-    num_1 = int(input("\nEnter first number: "))
-    num_2 = int(input("Enter second number: "))
+    num_1 = float(input("\nEnter first number: "))
+    num_2 = float(input("Enter second number: "))
     operation = input("Enter an operation (addition, subtraction, multiplication, division, or exponentiation): ").lower().strip()
 
     #Performing action based on user choosen operation
@@ -85,8 +85,6 @@ while is_running:
 
     #Appending result into history
     history.append(result)
-
-    #Stoping loop if user wants to
 
     #Asking user to continue or stop operations
     choice = input("Would you like to run the program again (y/n): ").lower()
