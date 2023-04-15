@@ -23,7 +23,7 @@ def show_menu(creature):
     """
     if creature.is_sleeping:
         choice = input("Enter 6 to awake the creature: ")
-        choice = 6
+        choice = "6"
     else:
         print("Enter 1 to eat.")
         print("Enter 2 to play.")
