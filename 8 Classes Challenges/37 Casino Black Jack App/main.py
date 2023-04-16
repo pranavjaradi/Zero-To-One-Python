@@ -8,4 +8,4 @@ minimum value of 17 as per casino guidelines. The user will be able to play as l
 total money is greater than or equal to the minimum bet of the table.
 """
 
-from gclasses import *
+from gameclasses import *
