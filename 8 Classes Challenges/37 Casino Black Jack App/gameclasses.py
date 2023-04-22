@@ -17,7 +17,7 @@ class Card():
         self.rank = rank
         self.value = value
         self.suit = suit
-
+    
     def display_card(self):
         """
         Printing the card information eg: K of Hearts, 10 of Spades etc.
@@ -54,7 +54,7 @@ class Deck():
     
     def deal_card(self):
         """Dealing a card from deck of cards
-
+    
         Returns:
             object: Instance of class Card.
         """
@@ -220,38 +220,44 @@ class Game():
             d_hand_val (int): Dealer hand value
         """
         if p_hand_val == 21:
-            print("Congrats! Player got the BlackJack.")
+            print("Congrats! Player got the BlackJack. You win!")
             self.winner = 'p' #Player is winner if their hand value is 21
         elif d_hand_val == 21:
-            print("Congrats! Dealer got the BlackJack.")
+            print("Oh! Dealer got the BlackJack. You loose!")
             self.winner = 'd' #Dealer is winner if their hand value is 21
         elif p_hand_val > 21:
-            print("Player hand value is more than 21.")
+            print("Your hand value is more than 21. You loose")
             self.winner = 'd'
         elif d_hand_val > 21:
-            print("Dealer hand value is more than 21.")
+            print("Dealer hand value is more than 21. You win!")
             self.winner = 'p'
         else:
             #winner will be based on who has more hand value
             if p_hand_val > d_hand_val:
-                print("Value of players hand is {} and dealers hand is {}.".format(p_hand_val, d_hand_val))
+                print("Value of players hand is {} and dealers hand is {}. You win!".format(p_hand_val, d_hand_val))
                 self.winner = 'p'
             elif p_hand_val < d_hand_val:
-                print("Value of players hand is {} and dealers hand is {}.".format(p_hand_val, d_hand_val))
+                print("Value of players hand is {} and dealers hand is {}. You loose!".format(p_hand_val, d_hand_val))
                 self.winner = 'd'
             else:
                 print("Value of hand for both player and dealer is {}.".format(p_hand_val))
                 self.winner = 'tie'
     
     def payout(self):
+        """Increasing the money if player won otherwise deducting it.
+        """
         if self.winner == 'p':
             self.money += self.bet
         elif self.winner == 'd':
             self.money -= self.bet
     
     def display_money(self):
-        print("The current money with player is {}.".format(self.money))
+        """Displaying the current money player has
+        """
+        print("\nThe current money with player is {}.".format(self.money))
     
     def display_money_and_bet(self):
-        print("The current money with player is {}.".format(self.money))
+        """Displaying the current money user has and the current bet amount
+        """
+        print("\nThe current money with player is {}.".format(self.money))
         print("The current bet amount is {}.".format(self.bet))

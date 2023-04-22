@@ -9,3 +9,31 @@ total money is greater than or equal to the minimum bet of the table.
 """
 
 from gameclasses import *
+
+#Welcoming user and informing about minimum bet amount
+print("Welcome to the Blackjack App.")
+print("The minimum bet at this table is $20.")
+
+#taking user input for money and creating the game object from it
+money = int(input("\nHow much money would you like to place on table: "))
+game = Game(money)
+
+active = True
+while active:
+    game_deck = Deck()
+    game_deck.build_deck() #Building the deck
+    game_deck.shuffle_deck() #Shuffling the deck
+    
+    #Creating player and dealer object
+    player = Player()
+    dealer = Dealer()
+    
+    #Displaying money and setting the bet using Game class
+    game.display_money()
+    game.set_bet()
+    
+    #Drawing player and dealer hand by using their respective class
+    player.draw_hand(game_deck)
+    dealer.draw_hand(game_deck)
+    
+    
