@@ -17,7 +17,7 @@ class Card():
         self.rank = rank
         self.value = value
         self.suit = suit
-    
+
     def display_card(self):
         """
         Printing the card information eg: K of Hearts, 10 of Spades etc.
@@ -99,7 +99,7 @@ class Player():
         self.hand_value = 0
         ace_in_hand = False #bool to track if player have an ace
         for card in self.hand:
-            hand_value += card.value
+            self.hand_value += card.value
             if card == 'A':
                 #checked for ace
                 ace_in_hand = True
@@ -174,7 +174,7 @@ class Dealer():
         self.hand_value = 0
         ace_in_hand = False #bool to track if player have an ace
         for card in self.hand:
-            hand_value += card.value
+            self.hand_value += card.value
             if card == 'A':
                 #checked for ace
                 ace_in_hand = True

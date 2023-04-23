@@ -18,8 +18,8 @@ print("The minimum bet at this table is $20.")
 money = int(input("\nHow much money would you like to place on table: "))
 game = Game(money)
 
-active = True
-while active:
+playing = True
+while playing:
     game_deck = Deck()
     game_deck.build_deck() #Building the deck
     game_deck.shuffle_deck() #Shuffling the deck
@@ -36,4 +36,27 @@ while active:
     player.draw_hand(game_deck)
     dealer.draw_hand(game_deck)
     
+    #Displaying money and bet amount using Game class and first card
+    game.display_money_and_bet()
     
+    #Printing first card of dealer
+    print("\nThe dealer is showing {} of {}.".format(dealer.hand[0].rank, dealer.hand[0].suit))
+    
+    #While player is playing their hand displaying hand, getting value of their hand and updating the hand
+    while player.playing_hand:
+        player.display_hand()
+        player.get_hand_value()
+        player.update_hand(game_deck)
+    
+    #allowing dealer to hit till they reach 17
+    dealer.hit(game_deck)
+    dealer.display_hand()
+    
+    #Calculating score and finalising payout
+    game.scoring(player.hand_value, dealer.hand_value)
+    game.payout()
+    
+    #If game money is less than 20 then stopping the game as minimum bet is 20
+    if game.money < 20:
+        playing = False
+        print("Oh ho, you run out of money. Please try again")
