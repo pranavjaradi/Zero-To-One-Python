@@ -1,9 +1,7 @@
 import random
 
 class Pykemon():
-    """
-    Parent class from which Fire, Water and Grass classes will inherit
-    """
+    """Parent class from which Fire, Water and Grass classes will inherit."""
     def __init__(self, name, element, health, speed):
         """Pykemon attributes Initialisation
 
@@ -97,13 +95,12 @@ class Fire(Pykemon):
         """
         The special attack deals massive damage to grass type Pykemon,
         normal damage to fire type Pykemon, and minimal damage to water type Pykemon.
-        This special attack will have a different name, depending on the element type
-        of the pokemon. However, all special attacks will appear in a list called moves,
+        All special attacks will appear in a list called moves,
         which is an attribute of a specific Pykemon at index 3.
         Args:
             enemy (object): Object of class Pykemon.
         """
-        
+        print("Pykemon {} used {}.".format(self.name, self.moves[3]))
         if enemy.element == 'GRASS':
             print("The move was super effective.")
             damage = random.randint(35, 50)
@@ -132,3 +129,99 @@ class Fire(Pykemon):
         print("\n--{}--".format(self.moves[3])) #Special attack move
         print("\tA powerful FIRE based attack...")
         print("\tGuaranteed to deal MASSIVE damage to GRASS type Pykemon.")
+
+class Water(Pykemon):
+    """Child class of Pykemon for water type
+
+    Args:
+        Pykemon (class): Parent class
+    """
+    def __init__(self, name, element, health, speed):
+        """
+        Initialising the water type pykemon
+        """
+        super.__init__(name, element, health, speed)
+        self.moves = ['Bite', 'Splash', 'Dive', 'Water Cannon'] #List in order of Light, heavy, restore and special attack for all Water pykemon
+    
+    def special_moves(self, enemy):
+        """The special attack deals massive damage to fire type Pykemon,
+        normal damage to Grass type Pykemon, and minimal damage to water type Pykemon.
+        This special attack will have a different name, depending on the element type of the pokemon.
+        However, all special attacks will appear in a list called moves,
+        which is an attribute of a specific Pykemon at index 3.
+        Args:
+            enemy (object): Object of class Pykemon.
+        """
+        print("Pykemon {} used {}.".format(self.name, self.moves[3]))
+        if enemy.element == 'FIRE':
+            print("The move was super effective.")
+            damage = random.randint(35, 50)
+        elif enemy.element == 'GRASS':
+            print("The move was not very effective.")
+            damage = random.randint(5, 10)
+        else:
+            damage = random.randint(10,30)
+        print("It did a damage of {}".format(damage))
+        enemy.current_health -= damage
+    
+    def move_info(self):
+        """
+        Print the details of all 4 moves including move name and damge dealt done by them.
+        """
+        print("\n{} Moves:".format(self.name))
+        print("--{}--".format(self.moves[0])) #Light attack move
+        print("\tAn efficient attack...")
+        print("\tGuaranteed to do damage within the range of 15 to 25 damage points.")
+        print("\n--{}--".format(self.moves[1])) #Heavy attack move
+        print("\tA risky attack...")
+        print("\tCould deal up to 50 damage points or as little as 0 damage points.")
+        print("\n--{}--".format(self.moves[2])) #Restore move
+        print("\tA restorative move...")
+        print("\tGuaranteed to heal your Pykemon 15 to 25 health points.")
+        print("\n--{}--".format(self.moves[3])) #Special attack move
+        print("\tA powerful WATER based attack...")
+        print("\tGuaranteed to deal MASSIVE damage to FIRE type Pykemon.")
+
+class Grass(Pykemon):
+    def __init__(self, name, element, health, speed):
+        super.__init__(name, element, health, speed)
+        self.moves = ['Vine Whip', 'Wrap', 'Grow', 'Leaf Blade']
+    
+    def special_moves(self, enemy):
+        """
+        The special attack deals massive damage to water type Pykemon, normal
+        damage to Fire type Pykemon, and minimal damage to grass type Pykemon.
+        All special attacks will appear in a list called moves,
+        which is an attribute of a specific Pykemon at index 3.
+        Args:
+            enemy (object): Object of class Pykemon.
+        """
+        print("Pykemon {} used {}.".format(self.name, self.moves[3]))
+        if enemy.element == 'WATER':
+            print("The move was super effective.")
+            damage = random.randint(35, 50)
+        elif enemy.element == 'FIRE':
+            print("The move was not very effective.")
+            damage = random.randint(5, 10)
+        else:
+            damage = random.randint(10,30)
+        print("It did a damage of {}".format(damage))
+        enemy.current_health -= damage
+    
+    def move_info(self):
+        """
+        Print the details of all 4 moves including move name and damge dealt done by them.
+        """
+        print("\n{} Moves:".format(self.name))
+        print("--{}--".format(self.moves[0])) #Light attack move
+        print("\tAn efficient attack...")
+        print("\tGuaranteed to do damage within the range of 15 to 25 damage points.")
+        print("\n--{}--".format(self.moves[1])) #Heavy attack move
+        print("\tA risky attack...")
+        print("\tCould deal up to 50 damage points or as little as 0 damage points.")
+        print("\n--{}--".format(self.moves[2])) #Restore move
+        print("\tA restorative move...")
+        print("\tGuaranteed to heal your Pykemon 15 to 25 health points.")
+        print("\n--{}--".format(self.moves[3])) #Special attack move
+        print("\tA powerful GRASS based attack...")
+        print("\tGuaranteed to deal MASSIVE damage to WATER type Pykemon.")
