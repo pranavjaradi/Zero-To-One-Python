@@ -225,3 +225,128 @@ class Grass(Pykemon):
         print("\n--{}--".format(self.moves[3])) #Special attack move
         print("\tA powerful GRASS based attack...")
         print("\tGuaranteed to deal MASSIVE damage to WATER type Pykemon.")
+
+class Game():
+    """
+    It will have methods required for gameplay.
+    """
+    def __init__(self):
+        """Initialisng the Game class which will have initially the pykemon types, names, and battle won.
+        """
+        self.pykemon_elements = ['FIRE', 'WATER', 'GRASS']
+        self.pykemon_names = ['Chewdie', 'Spatol', 'Burnmander', 'Pykachu', 'Pyonx', 'Abbacab', 'Sweetil', 'Jampot', 'Hownstooth', 'Swagilybo', 'Muttle', 'Zantbat', 'Wiggly Poof', 'Rubblesaur']
+        self.battles_won = 0 #Initially no battles won
+    
+    def create_pykemon(self):
+        """Creats a pykemon randomly.
+        Returns:
+            object: A Pykemon object with all attributes viz. name, element, health, speed.
+        """
+        health = random.randint(70,100)
+        speed = random.randint(1,10)
+        element = random.choice(self.pykemon_elements)
+        name = random.choice(self.pykemon_names)
+        #Creating pykemon in accordance with element.
+        if element == 'FIRE':
+            pykemon = Fire(name, element, health, speed)
+        elif element == 'WATER':
+            pykemon = Water(name, element, health, speed)
+        else:
+            pykemon = Grass(name, element, health, speed)
+        
+        return pykemon
+    
+    def choose_pykemon(self):
+        """User will presented with three random pykemon to choose from of each element type.
+        The user will play with this choosen pykemon.
+        Returns:
+            object: Pykemon object from which user will play the game
+        """
+        starters = [] #List will hold 3 pykemon
+        while len(starters) < 3:
+            pykemon = self.create_pykemon()
+            valid_pykemon = True
+            for starter in starters:
+                if starter.name == pykemon.name or starter.element == pykemon.element:
+                    valid_pykemon = False
+            if valid_pykemon:
+                starter.append(pykemon)
+                
+        for starter in starters:
+            #Displaying stats and info of pykemons to user
+            starter.show_stats()
+            starter.move_info()
+        print("\nProfessor Eramo presents you with three Pykemon:")
+        print("(1) - {}".format(starters[0]))
+        print("(2) - {}".format(starters[1]))
+        print("(3) - {}".format(starters[2]))
+        choice = int(input("Which Pykemon would you like to choose: "))
+        pykemon = starters[choice-1]
+        return pykemon
+    
+    def get_attack(self, pykemon):
+        """Getting move from user which they want pykemon to perform
+
+        Args:
+            pykemon (object): Pykemon class object
+
+        Returns:
+            int: Choice of move viz. light attack, heavy attack, restore, and special attack.
+        """
+        print("\nWhat would you like to do....")
+        print("(1) - {}".format(pykemon.moves[0]))
+        print("(2) - {}".format(pykemon.moves[1]))
+        print("(3) - {}".format(pykemon.moves[2]))
+        print("(4) - {}".format(pykemon.moves[3]))
+        choice = int(input("Please enter your move choice: "))
+        print("\n----------------------------------------")
+        return choice
+    
+    def player_attack(self, move, player, computer):
+        """
+        Player pykemon will attack based on get_attack return value and then
+        checks if computer is fainted after player move or not.
+        Args:
+            move (int): return value of get_attack method
+            player (object): Player's pykemon
+            computer (object): enemy pykemon handled by computer
+        """
+        if move == 1:
+            player.light_attack()
+        elif move == 2:
+            player.heavy_attack()
+        elif move == 3:
+            player.restore()
+        elif move == 4:
+            player.special_attack()
+        computer.faint()
+    
+    def computer_attack(self, player, computer):
+        """
+        Computer pykemon will attack based a random move value and then
+        checks if player is fainted after computer move or not.
+        Args:
+            player (object): Player's pykemon
+            computer (object): Enemy pykemon handled by computer
+        """
+        move = random.randint(1,4)
+        if move == 1:
+            computer.light_attack()
+        elif move == 2:
+            computer.heavy_attack()
+        elif move == 3:
+            computer.restore()
+        elif move == 4:
+            computer.special_attack()
+        player.faint()
+    
+    def battle(self, player, computer):
+        move = self.get_attack()
+        if player.speed >= computer.speed:
+            self.player_attack(move, player, computer)
+            if computer.is_alive:
+                self.computer_attack(player, computer)
+        else:
+            self.computer_attack(player, computer)
+            if player.is_alive:
+                self.player_attack(move, player, computer)
