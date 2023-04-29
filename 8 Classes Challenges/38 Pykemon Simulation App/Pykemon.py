@@ -88,7 +88,7 @@ class Fire(Pykemon):
         """
         Initialising Fire child class from Pykemon.
         """
-        super.__init__(name, element, health, speed)
+        super().__init__(name, element, health, speed)
         self.moves = ['Scratch', 'Ember', 'Light', 'Fire Blast'] #List in order of Light, heavy, restore and special attack for all fire pykemon
     
     def special_attack(self, enemy):
@@ -140,10 +140,10 @@ class Water(Pykemon):
         """
         Initialising the water type pykemon
         """
-        super.__init__(name, element, health, speed)
+        super().__init__(name, element, health, speed)
         self.moves = ['Bite', 'Splash', 'Dive', 'Water Cannon'] #List in order of Light, heavy, restore and special attack for all Water pykemon
     
-    def special_moves(self, enemy):
+    def special_attack(self, enemy):
         """The special attack deals massive damage to fire type Pykemon,
         normal damage to Grass type Pykemon, and minimal damage to water type Pykemon.
         This special attack will have a different name, depending on the element type of the pokemon.
@@ -184,10 +184,10 @@ class Water(Pykemon):
 
 class Grass(Pykemon):
     def __init__(self, name, element, health, speed):
-        super.__init__(name, element, health, speed)
+        super().__init__(name, element, health, speed)
         self.moves = ['Vine Whip', 'Wrap', 'Grow', 'Leaf Blade']
     
-    def special_moves(self, enemy):
+    def special_attack(self, enemy):
         """
         The special attack deals massive damage to water type Pykemon, normal
         damage to Fire type Pykemon, and minimal damage to grass type Pykemon.
@@ -270,16 +270,16 @@ class Game():
                 if starter.name == pykemon.name or starter.element == pykemon.element:
                     valid_pykemon = False
             if valid_pykemon:
-                starter.append(pykemon)
-                
+                starters.append(pykemon)
+        
         for starter in starters:
             #Displaying stats and info of pykemons to user
             starter.show_stats()
             starter.move_info()
         print("\nProfessor Eramo presents you with three Pykemon:")
-        print("(1) - {}".format(starters[0]))
-        print("(2) - {}".format(starters[1]))
-        print("(3) - {}".format(starters[2]))
+        print("(1) - {}".format(starters[0].name))
+        print("(2) - {}".format(starters[1].name))
+        print("(3) - {}".format(starters[2].name))
         choice = int(input("Which Pykemon would you like to choose: "))
         pykemon = starters[choice-1]
         return pykemon
@@ -312,13 +312,13 @@ class Game():
             computer (object): enemy pykemon handled by computer
         """
         if move == 1:
-            player.light_attack()
+            player.light_attack(computer)
         elif move == 2:
-            player.heavy_attack()
+            player.heavy_attack(computer)
         elif move == 3:
             player.restore()
         elif move == 4:
-            player.special_attack()
+            player.special_attack(computer)
         computer.faint()
     
     def computer_attack(self, player, computer):
@@ -331,17 +331,17 @@ class Game():
         """
         move = random.randint(1,4)
         if move == 1:
-            computer.light_attack()
+            computer.light_attack(player)
         elif move == 2:
-            computer.heavy_attack()
+            computer.heavy_attack(player)
         elif move == 3:
             computer.restore()
         elif move == 4:
-            computer.special_attack()
+            computer.special_attack(player)
         player.faint()
     
     def battle(self, player, computer):
-        move = self.get_attack()
+        move = self.get_attack(player)
         if player.speed >= computer.speed:
             self.player_attack(move, player, computer)
             if computer.is_alive:
