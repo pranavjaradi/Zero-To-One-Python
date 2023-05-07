@@ -1,4 +1,4 @@
-#Person class for Epidemic outbreak terminal GUI app.
+#Person class for Epidemic outbreak GUI app.
 import random
 
 class Person():
